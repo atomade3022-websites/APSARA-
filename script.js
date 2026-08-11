@@ -13,7 +13,7 @@ const OUTLETS = [
   { id: 5, name: "Opp. Bus Stand", town: "Mattannur", district: "Kannur", phone: "+91 82815 98404", timing: "07:00 AM - 10:00 PM", region: "mattannur" },
   { id: 6, name: "Kannur Road", town: "Mattannur", district: "Kannur", phone: "+91 98472 44200", timing: "07:00 AM - 10:00 PM", region: "mattannur" },
   { id: 7, name: "Iritty Road", town: "Mattannur", district: "Kannur", phone: "+91 96455 02000", timing: "07:00 AM - 10:00 PM", region: "mattannur" },
-  { id: 8, name: "Aleema Plaza", town: "Palottupalli", district: "Kannur", phone: "+91 95266 61980", timing: "07:00 AM - 10:00 PM", region: "uliyil" },
+  { id: 8, name: "Aleema Plaza", town: "Uliyil", district: "Kannur", phone: "+91 95266 61980", timing: "07:00 AM - 10:00 PM", region: "uliyil" },
   { id: 9, name: "Grand bei Market", town: "19th Mile", district: "Kannur", phone: "+91 95444 74250", timing: "07:00 AM - 10:00 PM", region: "other" },
   { id: 10, name: "Kooranmukku Branch", town: "Kooranmukku", district: "Kannur", phone: "+91 82815 98405", timing: "07:00 AM - 10:00 PM", region: "other" },
   { id: 11, name: "Uliyil Main Branch", town: "Uliyil", district: "Kannur", phone: "+91 75590 65874", timing: "07:00 AM - 10:00 PM", region: "uliyil" },

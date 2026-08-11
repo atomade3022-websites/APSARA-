@@ -65,7 +65,12 @@ button,
 input,
 select,
 textarea,
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-main);
 }
 
@@ -1939,7 +1944,7 @@ img {
   transition: background 0.5s ease;
 }
 
-.products-section > .container {
+.products-section>.container {
   border: 3.5px solid var(--header-bg, #12002e);
   border-radius: 32px;
   padding: 48px 24px;
@@ -2939,7 +2944,312 @@ img {
   margin-bottom: 8px;
 }
 
+/* ==========================================================================
+   MOBILE & TOUCH OPTIMIZATION (iOS & Android)
+   ========================================================================== */
+
+html,
+body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden !important;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
+}
+
+.header {
+  padding-top: max(12px, env(safe-area-inset-top));
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+
+.footer {
+  padding-bottom: max(32px, env(safe-area-inset-bottom));
+}
+
+@media (max-width: 950px) {
+
+  #attractPills,
+  .attract-pills,
+  .attract-pill,
+  .header-divider,
+  .header-spacer,
+  .main-nav {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* ═════════════════════════════════════════════════════════════════════════
+     MOBILE MODE EASY MANUAL CONTROLS
+     (Edit the values below to manually adjust mobile spacing, sizes & positions)
+     ═════════════════════════════════════════════════════════════════════════ */
+  :root {
+    --hero-logo-x: 0px !important;
+    --hero-logo-y: 0px !important;
+    --hero-product-x: 0px !important;
+    --hero-product-y: 0px !important;
+    --click-me-x: 0px !important;
+    --click-me-y: 0px !important;
+
+    /* 🛠 EDITABLE MOBILE CONTROL VARIABLES (Line 2990): */
+    --m-hero-top-padding: 55px;
+    /* Top space above hero section */
+    --m-hero-bottom-padding: 5px;
+    /* Bottom space below hero section */
+    --m-hero-min-height: 420px;
+    /* Total minimum height of hero section */
+
+    --m-logo-size: 340px;
+    /* Size of Logo */
+    --m-logo-gap-bottom: 0px;
+    /* Gap below Logo */
+
+    --m-product-size: 260px;
+    /* Size of Product Packet Image */
+    --m-product-offset-top: -35px;
+    /* Shift Product up (-) or down (+) closer to logo */
+
+    --m-click-me-gap: 0px;
+    /* Gap around Click Me button */
+    --m-scroll-btn-gap-top: 30px;
+    /* Gap above Scroll Down button */
+  }
+
+  .hero {
+    height: auto !important;
+    min-height: var(--m-hero-min-height) !important;
+    padding: var(--m-hero-top-padding) 16px var(--m-hero-bottom-padding) !important;
+    overflow: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+  }
+
+  .hero-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0px !important;
+    height: auto !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .hero-logo-wrap {
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-bottom: var(--m-logo-gap-bottom) !important;
+  }
+
+  .hero-logo-img {
+    width: 100% !important;
+    max-width: var(--m-logo-size) !important;
+    height: auto !important;
+    left: 0 !important;
+    top: 0 !important;
+    margin: 0 auto !important;
+    transform: none !important;
+  }
+
+  .hero-product-wrap {
+    width: 100% !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-top: var(--m-product-offset-top) !important;
+    position: relative !important;
+    left: 0 !important;
+    top: 0 !important;
+    gap: var(--m-click-me-gap) !important;
+  }
+
+  .hero-product-wrap::before {
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: calc(var(--m-product-size) + 10px) !important;
+    height: calc(var(--m-product-size) + 10px) !important;
+  }
+
+  .hero-product-img {
+    width: 100% !important;
+    max-width: var(--m-product-size) !important;
+    height: auto !important;
+    margin-top: 0 !important;
+    left: 0 !important;
+    top: 0 !important;
+    position: relative !important;
+    transform: none !important;
+  }
+
+  .hero-click-me-callout {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .hero-scroll-btn-wrap {
+    margin-top: var(--m-scroll-btn-gap-top) !important;
+    position: relative !important;
+    z-index: 10 !important;
+  }
+}
+
 @media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .trust-bar {
+    padding: 24px 0 16px !important;
+    overflow: visible !important;
+  }
+
+  .trust-bar .container {
+    padding: 0 16px !important;
+    position: relative !important;
+  }
+
+  .trust-grid {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    min-height: 80px !important;
+  }
+
+  .trust-card {
+    display: none !important;
+    width: 100% !important;
+    position: relative !important;
+    padding: 16px !important;
+    border-radius: 18px !important;
+    background: #ffffff !important;
+    border: 1.5px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    opacity: 0;
+  }
+
+  .trust-card.mobile-active {
+    display: block !important;
+    opacity: 1 !important;
+    animation: trustCardFadeIn 0.45s ease forwards;
+  }
+
+  /* Mobile Pagination Dots (1, 2, 3, 4) */
+  .trust-mobile-dots {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-top: 14px !important;
+  }
+
+  .trust-mobile-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(58, 36, 20, 0.2);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.35s ease;
+  }
+
+  .trust-mobile-dot.active {
+    width: 24px;
+    border-radius: 10px;
+    background: var(--pink, #ff3d9a);
+  }
+
+  .trust-card-info h4 {
+    font-size: 0.95rem !important;
+    white-space: normal !important;
+    overflow: visible !important;
+  }
+
+  .trust-summary {
+    font-size: 0.78rem !important;
+    white-space: normal !important;
+    overflow: visible !important;
+  }
+
+  /* Smooth Inline Expansion for Mobile — Fits 100% inside screen */
+  .trust-dropdown {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    padding: 0 16px !important;
+    margin-top: 0 !important;
+    border: none !important;
+    border-radius: 14px !important;
+    box-shadow: none !important;
+    background: #12002e !important;
+    transition: max-height 0.4s ease, opacity 0.35s ease, margin-top 0.35s ease, padding 0.35s ease, visibility 0.35s ease !important;
+  }
+
+  .trust-dropdown::before {
+    display: none !important;
+  }
+
+  .trust-card:hover .trust-dropdown,
+  .trust-card:focus .trust-dropdown,
+  .trust-card:focus-within .trust-dropdown,
+  .trust-card.active .trust-dropdown {
+    max-height: 500px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin-top: 14px !important;
+    padding: 16px !important;
+    transform: none !important;
+  }
+
+  .trust-card:hover,
+  .trust-card:focus,
+  .trust-card:focus-within,
+  .trust-card.active {
+    border-color: var(--pink, #ff3d9a) !important;
+    box-shadow: 0 8px 24px rgba(255, 61, 154, 0.15) !important;
+  }
+
+  @keyframes trustCardFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .owner-vip-card {
     padding: 24px;
   }
@@ -2960,6 +3270,61 @@ img {
 
   .outlets-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .outlets-filter-pills {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .outlets-filter-pill {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .products-section>.container {
+    padding: 24px 16px !important;
+    border-width: 2px !important;
+    border-radius: 20px !important;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+  }
+
+  .footer-quick-chips {
+    flex-direction: column !alignment;
+    align-items: stretch;
+  }
+
+  .footer-chip-btn {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .trust-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .outlet-card-actions {
+    flex-direction: row;
+    gap: 6px;
+  }
+
+  .outlet-act-btn {
+    padding: 10px 6px !important;
+    font-size: 0.78rem !important;
   }
 }
 
@@ -5171,8 +5536,13 @@ img {
 }
 
 @keyframes footerTickerScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* 2. Main Footer Body */
@@ -5594,6 +5964,7 @@ img {
   .footer-grid {
     grid-template-columns: 1fr;
   }
+
   .footer-bottom-flex {
     flex-direction: column;
     text-align: center;
@@ -5693,10 +6064,12 @@ img {
     text-align: center;
     padding: 30px 20px;
   }
+
   .newsletter-form {
     width: 100%;
     justify-content: center;
   }
+
   .newsletter-form input {
     width: 100%;
   }
@@ -5878,7 +6251,7 @@ img {
   font-weight: 700;
   padding: 8px 16px;
   border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -6057,6 +6430,7 @@ img {
   background: var(--dynamic-accent-glow, rgba(255, 61, 154, 0.08));
   border-color: var(--header-bg, var(--pink, rgba(255, 61, 154, 0.2)));
 }
+
 .lh-chip.pink-chip i {
   color: var(--header-bg, var(--pink, #ff66b2));
 }
@@ -6065,6 +6439,7 @@ img {
   background: rgba(168, 85, 247, 0.08);
   border-color: rgba(168, 85, 247, 0.2);
 }
+
 .lh-chip.purple-chip i {
   color: #c084fc;
 }
@@ -6377,9 +6752,145 @@ section.products-section,
   background-image: none !important;
 }
 
-#products.products-section > .container,
-section.products-section > .container {
+#products.products-section>.container,
+section.products-section>.container {
   background: #ffffff !important;
   border: 3.5px solid rgba(58, 36, 20, 0.12) !important;
   box-shadow: 0 20px 60px rgba(58, 36, 20, 0.08) !important;
+}
+
+/* ═════════════════════════════════════════════════════════════════════════
+   MOBILE TRUST BAR (6-SECOND AUTO-ROTATING SINGLE-CARD SLIDER)
+   ═════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  #trust-bar,
+  .trust-bar {
+    padding: 24px 0 16px !important;
+    overflow: visible !important;
+  }
+
+  #trust-bar .container,
+  .trust-bar .container {
+    padding: 0 16px !important;
+    position: relative !important;
+  }
+
+  #trust-bar .trust-grid,
+  .trust-bar .trust-grid,
+  .trust-grid {
+    display: block !important;
+    grid-template-columns: none !important;
+    position: relative !important;
+    width: 100% !important;
+    min-height: 80px !important;
+  }
+
+  #trust-bar .trust-card,
+  .trust-bar .trust-card,
+  .trust-card {
+    display: none !important;
+    width: 100% !important;
+    position: relative !important;
+    padding: 16px !important;
+    border-radius: 18px !important;
+    background: #ffffff !important;
+    border: 1.5px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    opacity: 0;
+  }
+
+  #trust-bar .trust-card.mobile-active,
+  .trust-bar .trust-card.mobile-active,
+  .trust-card.mobile-active {
+    display: block !important;
+    opacity: 1 !important;
+    animation: trustCardFadeIn 0.45s ease forwards !important;
+  }
+
+  /* Mobile Pagination Dots (1, 2, 3, 4) */
+  .trust-mobile-dots {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-top: 14px !important;
+  }
+
+  .trust-mobile-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(58, 36, 20, 0.2);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.35s ease;
+  }
+
+  .trust-mobile-dot.active {
+    width: 24px;
+    border-radius: 10px;
+    background: var(--pink, #ff3d9a);
+  }
+
+  .trust-card-info h4 {
+    font-size: 0.95rem !important;
+    white-space: normal !important;
+    overflow: visible !important;
+  }
+
+  .trust-summary {
+    font-size: 0.78rem !important;
+    white-space: normal !important;
+    overflow: visible !important;
+  }
+
+  /* Smooth Inline Expansion for Mobile — Fits 100% inside screen */
+  .trust-dropdown {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    padding: 0 16px !important;
+    margin-top: 0 !important;
+    border: none !important;
+    border-radius: 14px !important;
+    box-shadow: none !important;
+    background: #12002e !important;
+    transition: max-height 0.4s ease, opacity 0.35s ease, margin-top 0.35s ease, padding 0.35s ease, visibility 0.35s ease !important;
+  }
+
+  .trust-dropdown::before {
+    display: none !important;
+  }
+
+  .trust-card:hover .trust-dropdown,
+  .trust-card:focus .trust-dropdown,
+  .trust-card:focus-within .trust-dropdown,
+  .trust-card.active .trust-dropdown {
+    max-height: 500px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin-top: 14px !important;
+    padding: 16px !important;
+    transform: none !important;
+  }
+
+  .trust-card:hover,
+  .trust-card:focus,
+  .trust-card:focus-within,
+  .trust-card.active {
+    border-color: var(--pink, #ff3d9a) !important;
+    box-shadow: 0 8px 24px rgba(255, 61, 154, 0.15) !important;
+  }
 }
