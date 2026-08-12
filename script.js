@@ -551,14 +551,164 @@ function setupEventListeners() {
       }
     });
   }
+
+  // Init Desktop & Mobile Nav Smooth Scroll + ScrollSpy
+  initNavScrollAndSpy();
+}
+
+/* --------------------------------------------------------------------------
+   NAV SMOOTH SCROLL & SCROLLSPY
+   -------------------------------------------------------------------------- */
+function initNavScrollAndSpy() {
+  const navLinks = document.querySelectorAll('a[href^="#"]');
+  const sections = document.querySelectorAll('section[id], header[id]');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (!targetId || targetId === '#' || !targetId.startsWith('#')) return;
+
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        const headerOffset = 80;
+        const elementPosition = targetEl.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+
+        // Update active state immediately
+        document.querySelectorAll('.attract-pill, .nav-link').forEach(pill => {
+          pill.classList.remove('active');
+        });
+        this.classList.add('active');
+
+        // Close mobile overlay if open
+        const navOverlay = document.getElementById("nav");
+        if (navOverlay && navOverlay.classList.contains("is-open")) {
+          navOverlay.classList.remove("is-open");
+        }
+      }
+    });
+  });
+
+  // ScrollSpy active highlighting
+  window.addEventListener('scroll', () => {
+    let current = '';
+    const scrollPos = window.pageYOffset + 120;
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    if (current) {
+      document.querySelectorAll('.attract-pill, .nav-link').forEach(pill => {
+        if (pill.getAttribute('href') === `#${current}`) {
+          pill.classList.add('active');
+        } else {
+          pill.classList.remove('active');
+        }
+      });
+    }
+  });
 }
 
 /* --------------------------------------------------------------------------
    5. LEADERSHIP PROFILE LIGHTBOX MODAL
    -------------------------------------------------------------------------- */
-function openProfileModal(imgSrc, name, title, headline, quote, description) {
+const LEADERS_DATA = {
+  "mayan": {
+    imgSrc: "mayan.png",
+    name: "K.V. Mayan",
+    title: "Founder & Managing Director",
+    headline: "A Visionary. A Leader. A Legacy.",
+    quote: "Our journey started local, our vision took us global. Quality is our promise, trust is our strength.",
+    description: "Mr. K.V. Mayan is the visionary founder and Managing Director of Apsara Bakes Private Limited. Starting in 1980 with just two dedicated staff in Iritty, Kannur, his uncompromising commitment to pure ingredients, traditional recipes, and food safety built Apsara Bakes into one of Kerala's premier bakery enterprises. Under his leadership, the brand expanded to 17+ modern retail outlets across Kannur district, large-scale wholesale operations, and international exports reaching New Zealand, Australia, GCC, Oman, and the USA.",
+    roleTag: "FOUNDER & MD",
+    milestones: [
+      "1980 - A Humble Beginning: Founded Apsara Bakes with two staff, crafting fresh traditional snacks and bakery items in Iritty, Kannur.",
+      "Manufacturing & Expansion: Scaled production with state-of-the-art baking machinery while preserving traditional Malabar flavors.",
+      "17+ Modern Retail Outlets: Built a trusted retail presence across Kannur, serving over 10 Lakh+ loyal customers.",
+      "ISO 22000 & Cleanroom Standards: Implemented ISO certified touchless automated production & nitrogen vacuum sealing.",
+      "Global Supply Network: Expanded export distribution across 5+ countries including New Zealand, Australia, GCC, Oman & USA."
+    ],
+    highlights: [
+      "Quality First: Unmatched taste in every batch",
+      "40+ Years Leadership: Pioneer of Kannur baking",
+      "17+ Outlets Network: Regional market leader",
+      "Global Distribution: Exports to 5+ countries",
+      "ISO Food Safety: Pure coconut oil & hygiene"
+    ]
+  },
+  "safoora": {
+    imgSrc: "safoora.png",
+    name: "Safoora Mayan",
+    title: "Director & Recipe Advisor",
+    headline: "Behind Every Success, There Is Visionary Guidance.",
+    quote: "Her vision shapes our journey. Her values define our success.",
+    description: "Mrs. Safoora Mayan serves as Director and Chief Recipe Advisor of Apsara Bakes Private Limited. A cornerstone of the family business since its inception, she is the creative force behind Apsara's signature authentic Kerala snack recipes, including banana chips, halwa variants, and traditional festive savouries. Her emphasis on pure cold-pressed coconut oil, unadulterated spices, and home-style warmth ensures that every Apsara product retains its nostalgic heritage flavor while meeting global food quality standards.",
+    roleTag: "DIRECTOR",
+    milestones: [
+      "Co-Founding Support: Stood as a primary pillar of strength, wise counsel, and encouragement during the early establishment phase.",
+      "Mastering Recipe Formulation: Developed the proprietary spice blends and frying techniques for Kerala's favorite Banana Chips and Halwa.",
+      "Uncompromising Quality Control: Established standard operating recipes ensuring consistent taste across all 17 outlets.",
+      "Preserving Culinary Heritage: Championed traditional methods, natural sweeteners like jaggery, and 100% pure coconut oil."
+    ],
+    highlights: [
+      "Authentic Recipes: Heritage Kerala taste",
+      "Culinary R&D: Flavor & texture innovator",
+      "Pure Ingredients: 100% Coconut Oil & Ghee",
+      "Organizational Culture: Family values & care"
+    ]
+  },
+  "shahid": {
+    imgSrc: "shahid.png",
+    name: "Shahid Pilakool",
+    title: "Director & Growth Strategist",
+    headline: "A Leader. An Entrepreneur. A Vision For Growth.",
+    quote: "Rooted in values. Driven by innovation. Taking Apsara from Kerala to the world.",
+    description: "Mr. Shahid Pilakool is the Director & Growth Strategist at Apsara Bakes Private Limited. Holding a Master's degree in Business Entrepreneurship from De Montfort University, Leicester, UK, he joined the leadership team in 2017 to modernize corporate governance, expand international exports, and introduce next-generation café concepts. He leads global business development, digital brand strategy, and high-capacity manufacturing logistics, driving Apsara Bakes into its next era of international expansion.",
+    roleTag: "DIRECTOR",
+    milestones: [
+      "2017 - Strategic Leadership: Joined as Director after completing Postgraduate studies in Business Entrepreneurship in the UK.",
+      "International Business Development: Established direct export pipelines into GCC markets, Australia, New Zealand, and North America.",
+      "2019 - Café & Retail Modernization: Launched modern boutique bakery café formats and premium product packaging.",
+      "Digital Transformation: Spearheaded online ordering, automated inventory management, and contemporary customer experiences."
+    ],
+    highlights: [
+      "UK Business Graduate: Master's in Entrepreneurship",
+      "Global Expansion: Export operations in 5+ countries",
+      "Modern Café Formats: Next-gen customer experience",
+      "Corporate Strategy: Sustainable brand growth"
+    ]
+  }
+};
+
+function openProfileModal(leaderKeyOrImg, name, title, headline, quote, description) {
   const modal = document.getElementById("leadershipModal");
   if (!modal) return;
+
+  let leader = LEADERS_DATA[leaderKeyOrImg];
+  if (!leader) {
+    leader = {
+      imgSrc: leaderKeyOrImg,
+      name: name || "Leader Profile",
+      title: title || "",
+      headline: headline || "",
+      quote: quote || "",
+      description: description || "",
+      roleTag: title && title.toUpperCase().includes('FOUNDER') ? 'FOUNDER & MD' : 'DIRECTOR',
+      milestones: [],
+      highlights: []
+    };
+  }
 
   const imgEl = document.getElementById("modalProfileImg");
   const nameEl = document.getElementById("modalProfileName");
@@ -566,17 +716,96 @@ function openProfileModal(imgSrc, name, title, headline, quote, description) {
   const headlineEl = document.getElementById("modalHeadline");
   const quoteEl = document.getElementById("modalQuote");
   const descEl = document.getElementById("modalDescription");
-  const downloadBtn = document.getElementById("modalDownloadBtn");
   const tagEl = document.getElementById("modalRoleTag");
+  const milestonesEl = document.getElementById("modalMilestones");
+  const highlightsEl = document.getElementById("modalHighlights");
 
-  if (imgEl) imgEl.src = imgSrc;
-  if (nameEl) nameEl.innerText = name;
-  if (titleEl) titleEl.innerText = title;
-  if (headlineEl) headlineEl.innerText = `“${headline}”`;
-  if (quoteEl) quoteEl.innerText = `“${quote}”`;
-  if (descEl) descEl.innerText = description;
-  if (downloadBtn) downloadBtn.href = imgSrc;
-  if (tagEl) tagEl.innerText = title.toUpperCase().includes('FOUNDER') ? 'FOUNDER & MD' : 'DIRECTOR';
+  const isFounder = leader.roleTag.includes('FOUNDER');
+  const themeColor = isFounder ? '#ffd700' : '#e0e0e0';
+
+  if (imgEl) imgEl.src = leader.imgSrc;
+  if (nameEl) nameEl.innerText = leader.name;
+  if (titleEl) {
+    titleEl.innerText = leader.title;
+    titleEl.style.color = themeColor;
+  }
+  if (headlineEl) {
+    headlineEl.innerText = leader.headline ? `“${leader.headline}”` : '';
+    headlineEl.style.color = themeColor;
+  }
+  if (quoteEl) {
+    quoteEl.innerText = leader.quote ? `“${leader.quote}”` : '';
+    quoteEl.style.borderLeftColor = themeColor;
+  }
+  if (descEl) descEl.innerText = leader.description;
+
+  if (tagEl) {
+    tagEl.innerText = leader.roleTag;
+    if (leader.roleTag.includes('FOUNDER')) {
+      tagEl.className = 'modal-badge-tag founder-gold-badge';
+    } else {
+      tagEl.className = 'modal-badge-tag silver-badge';
+    }
+  }
+
+  const milestonesTitle = document.getElementById("modalMilestonesTitle");
+  if (milestonesTitle) milestonesTitle.style.color = themeColor;
+
+  const highlightsTitle = document.getElementById("modalHighlightsTitle");
+  if (highlightsTitle) highlightsTitle.style.color = themeColor;
+
+  if (milestonesEl) {
+    if (leader.milestones && leader.milestones.length > 0) {
+      milestonesEl.innerHTML = leader.milestones.map(m => `
+        <li style="margin-bottom: 10px; font-size: 0.88rem; color: #e5e5e5; line-height: 1.5; display: flex; align-items: flex-start; gap: 8px;">
+          <i class="ri-checkbox-circle-fill" style="color: ${themeColor}; font-size: 1.05rem; flex-shrink: 0; margin-top: 2px;"></i>
+          <span>${m}</span>
+        </li>
+      `).join('');
+      if (milestonesTitle) milestonesTitle.style.display = "block";
+      milestonesEl.style.display = "block";
+    } else {
+      milestonesEl.style.display = "none";
+      if (milestonesTitle) milestonesTitle.style.display = "none";
+    }
+  }
+
+  if (highlightsEl) {
+    if (leader.highlights && leader.highlights.length > 0) {
+      const chipBg = isFounder ? 'rgba(255, 215, 0, 0.12)' : 'rgba(224, 224, 224, 0.12)';
+      const chipBorder = isFounder ? 'rgba(255, 215, 0, 0.4)' : 'rgba(224, 224, 224, 0.35)';
+
+      highlightsEl.innerHTML = leader.highlights.map(h => `
+        <div style="font-size: 0.82rem; font-weight: 600; padding: 7px 14px; background: ${chipBg}; border-radius: 10px; border: 1px solid ${chipBorder}; color: #ffffff; display: flex; align-items: center; gap: 8px;">
+          <i class="ri-star-fill" style="color: ${themeColor};"></i> ${h}
+        </div>
+      `).join('');
+      if (highlightsTitle) highlightsTitle.style.display = "block";
+      highlightsEl.style.display = "flex";
+    } else {
+      highlightsEl.style.display = "none";
+      if (highlightsTitle) highlightsTitle.style.display = "none";
+    }
+  }
+
+  const contactBtn = document.getElementById("modalContactBtn");
+  if (contactBtn) {
+    contactBtn.href = "tel:+919847572417";
+    contactBtn.style.background = isFounder 
+      ? 'linear-gradient(135deg, #ffd700 0%, #cca010 100%)' 
+      : 'linear-gradient(135deg, #ffffff 0%, #a8a9b3 100%)';
+    contactBtn.style.color = '#0d0a00';
+    contactBtn.style.fontWeight = '800';
+    contactBtn.style.border = isFounder ? '1px solid #ffe885' : '1px solid #ffffff';
+  }
+
+  const modalBox = modal.querySelector(".leadership-modal-box");
+  if (modalBox) {
+    modalBox.style.borderColor = isFounder ? 'rgba(255, 215, 0, 0.45)' : 'rgba(224, 224, 224, 0.35)';
+    modalBox.style.boxShadow = isFounder 
+      ? '0 25px 70px rgba(255, 215, 0, 0.2), 0 10px 40px rgba(0, 0, 0, 0.8)' 
+      : '0 25px 70px rgba(255, 255, 255, 0.12), 0 10px 40px rgba(0, 0, 0, 0.8)';
+  }
 
   modal.classList.add("active");
   document.body.style.overflow = "hidden";
@@ -589,6 +818,10 @@ function closeProfileModal() {
     document.body.style.overflow = "";
   }
 }
+
+// Expose globally on window
+window.openProfileModal = openProfileModal;
+window.closeProfileModal = closeProfileModal;
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeProfileModal();
