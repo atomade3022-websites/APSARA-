@@ -6,24 +6,24 @@
 const MAIN_OWNER_PHONE = "+91 98475 72417";
 
 const OUTLETS = [
-  { id: 1, name: "Old Bus Stand", town: "Iritty", district: "Kannur", phone: "+91 82815 98401", timing: "07:00 AM - 10:00 PM", region: "iritty" },
-  { id: 2, name: "Mele Bus Stand", town: "Iritty", district: "Kannur", phone: "+91 82815 98402", timing: "07:00 AM - 10:00 PM", region: "iritty" },
-  { id: 3, name: "New Bus Stand", town: "Iritty", district: "Kannur", phone: "+91 82815 98403", timing: "07:00 AM - 10:00 PM", region: "iritty" },
-  { id: 4, name: "Ittans Coolbar", town: "Iritty", district: "Kannur", phone: "+91 82815 98406", timing: "07:00 AM - 10:00 PM", region: "iritty" },
-  { id: 5, name: "Opp. Bus Stand", town: "Mattannur", district: "Kannur", phone: "+91 82815 98404", timing: "07:00 AM - 10:00 PM", region: "mattannur" },
-  { id: 6, name: "Kannur Road", town: "Mattannur", district: "Kannur", phone: "+91 98472 44200", timing: "07:00 AM - 10:00 PM", region: "mattannur" },
-  { id: 7, name: "Iritty Road", town: "Mattannur", district: "Kannur", phone: "+91 96455 02000", timing: "07:00 AM - 10:00 PM", region: "mattannur" },
-  { id: 8, name: "Aleema Plaza", town: "Uliyil", district: "Kannur", phone: "+91 95266 61980", timing: "07:00 AM - 10:00 PM", region: "uliyil" },
-  { id: 9, name: "Grand bei Market", town: "19th Mile", district: "Kannur", phone: "+91 95444 74250", timing: "07:00 AM - 10:00 PM", region: "other" },
-  { id: 10, name: "Kooranmukku Branch", town: "Kooranmukku", district: "Kannur", phone: "+91 82815 98405", timing: "07:00 AM - 10:00 PM", region: "other" },
-  { id: 11, name: "Uliyil Main Branch", town: "Uliyil", district: "Kannur", phone: "+91 75590 65874", timing: "07:00 AM - 10:00 PM", region: "uliyil" },
-  { id: 12, name: "Express Cafe", town: "Uliyil", district: "Kannur", phone: "+91 92074 89789", timing: "07:00 AM - 10:00 PM", region: "uliyil" },
-  { id: 13, name: "Punnad Branch", town: "Punnad", district: "Kannur", phone: "+91 82815 98407", timing: "07:00 AM - 10:00 PM", region: "other" },
-  { id: 14, name: "Keezhurkunnu Store", town: "Keezhurkunnu", district: "Kannur", phone: "+91 81389 91980", timing: "07:00 AM - 10:00 PM", region: "other" },
-  { id: 15, name: "Vallithode Branch", town: "Vallithode", district: "Kannur", phone: "+91 90727 01980", timing: "07:00 AM - 10:00 PM", region: "other" },
-  { id: 16, name: "Thillankery Branch", town: "Thillankery", district: "Kannur", phone: "+91 80865 84009", timing: "07:00 AM - 10:00 PM", region: "other" },
-  { id: 17, name: "Kakkayangad Branch", town: "Kakkayangad", district: "Kannur", phone: "+91 83040 89147", timing: "07:00 AM - 10:00 PM", region: "other" },
-  { id: 18, name: "Vilakode Branch", town: "Vilakode", district: "Kannur", phone: "+91 86064 72000", timing: "07:00 AM - 10:00 PM", region: "other" }
+  { id: 1, name: "Old Bus Stand", town: "Iritty", district: "Kannur", phone: "+91 82815 98401", timing: "09:00 AM - 06:00 PM", region: "iritty" },
+  { id: 2, name: "Mele Bus Stand", town: "Iritty", district: "Kannur", phone: "+91 82815 98402", timing: "09:00 AM - 06:00 PM", region: "iritty" },
+  { id: 3, name: "New Bus Stand", town: "Iritty", district: "Kannur", phone: "+91 82815 98403", timing: "09:00 AM - 06:00 PM", region: "iritty" },
+  { id: 4, name: "Ittans Coolbar", town: "Iritty", district: "Kannur", phone: "+91 82815 98406", timing: "09:00 AM - 06:00 PM", region: "iritty" },
+  { id: 5, name: "Opp. Bus Stand", town: "Mattannur", district: "Kannur", phone: "+91 82815 98404", timing: "09:00 AM - 06:00 PM", region: "mattannur" },
+  { id: 6, name: "Kannur Road", town: "Mattannur", district: "Kannur", phone: "+91 98472 44200", timing: "09:00 AM - 06:00 PM", region: "mattannur" },
+  { id: 7, name: "Iritty Road", town: "Mattannur", district: "Kannur", phone: "+91 96455 02000", timing: "09:00 AM - 06:00 PM", region: "mattannur" },
+  { id: 8, name: "Aleema Plaza", town: "Uliyil", district: "Kannur", phone: "+91 95266 61980", timing: "09:00 AM - 06:00 PM", region: "uliyil" },
+  { id: 9, name: "Grand bei Market", town: "19th Mile", district: "Kannur", phone: "+91 95444 74250", timing: "09:00 AM - 06:00 PM", region: "other" },
+  { id: 10, name: "Kooranmukku Branch", town: "Kooranmukku", district: "Kannur", phone: "+91 82815 98405", timing: "09:00 AM - 06:00 PM", region: "other" },
+  { id: 11, name: "Uliyil Main Branch", town: "Uliyil", district: "Kannur", phone: "+91 75590 65874", timing: "09:00 AM - 06:00 PM", region: "uliyil" },
+  { id: 12, name: "Express Cafe", town: "Uliyil", district: "Kannur", phone: "+91 92074 89789", timing: "09:00 AM - 06:00 PM", region: "uliyil" },
+  { id: 13, name: "Punnad Branch", town: "Punnad", district: "Kannur", phone: "+91 82815 98407", timing: "09:00 AM - 06:00 PM", region: "other" },
+  { id: 14, name: "Keezhurkunnu Store", town: "Keezhurkunnu", district: "Kannur", phone: "+91 81389 91980", timing: "09:00 AM - 06:00 PM", region: "other" },
+  { id: 15, name: "Vallithode Branch", town: "Vallithode", district: "Kannur", phone: "+91 90727 01980", timing: "09:00 AM - 06:00 PM", region: "other" },
+  { id: 16, name: "Thillankery Branch", town: "Thillankery", district: "Kannur", phone: "+91 80865 84009", timing: "09:00 AM - 06:00 PM", region: "other" },
+  { id: 17, name: "Kakkayangad Branch", town: "Kakkayangad", district: "Kannur", phone: "+91 83040 89147", timing: "09:00 AM - 06:00 PM", region: "other" },
+  { id: 18, name: "Vilakode Branch", town: "Vilakode", district: "Kannur", phone: "+91 86064 72000", timing: "09:00 AM - 06:00 PM", region: "other" }
 ];
 
 // 2. PRODUCTS DATA (Featuring actual project assets)
