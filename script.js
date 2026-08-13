@@ -127,6 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCakeCalculator();
   initToastNotifications();
   initScrollAnimations();
+  initWhatsNewAutoRotate();
   setupEventListeners();
 });
 
@@ -253,7 +254,7 @@ function renderOutletsGrid(outletsList) {
         <a href="https://maps.google.com/?q=${encodeURIComponent(item.mapsQuery)}" target="_blank" class="btn btn-secondary">
           <i class="ri-direction-line"></i> Directions
         </a>
-        <a href="https://wa.me/919447123456?text=${encodeURIComponent(`Hello Apsara Bakes! I want to inquire about orders at ${item.name}`)}" target="_blank" class="btn btn-primary">
+        <a href="https://wa.me/919847572417?text=${encodeURIComponent(`Hello Apsara Bakes! I want to inquire about orders at ${item.name}`)}" target="_blank" class="btn btn-primary">
           <i class="ri-whatsapp-line"></i> Order
         </a>
       </div>
@@ -368,7 +369,7 @@ function openProductModal(productId) {
           <strong style="color: var(--accent-gold);">Key Ingredients:</strong> ${product.ingredients}
         </div>
         <div style="margin-top: 10px; display: flex; gap: 12px;">
-          <a href="https://wa.me/919447123456?text=${encodeURIComponent(whatsappMsg)}" target="_blank" class="btn btn-whatsapp" style="flex: 1;">
+          <a href="https://wa.me/919847572417?text=${encodeURIComponent(whatsappMsg)}" target="_blank" class="btn btn-whatsapp" style="flex: 1;">
             <i class="ri-whatsapp-line"></i> Order on WhatsApp
           </a>
         </div>
@@ -425,7 +426,7 @@ function initCakeCalculator() {
 - Message on Cake: "${msgInput?.value || 'Happy Birthday!'}"
 - Preferred Pickup Outlet: ${outletSelect ? outletSelect.value : 'Keezhoorkunnu Main Outlet'}
 - Estimated Price: ₹${totalPrice}`;
-      waBtn.href = `https://wa.me/919447123456?text=${encodeURIComponent(text)}`;
+      waBtn.href = `https://wa.me/919847572417?text=${encodeURIComponent(text)}`;
     }
   }
 
@@ -826,3 +827,133 @@ window.closeProfileModal = closeProfileModal;
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeProfileModal();
 });
+
+/* --------------------------------------------------------------------------
+   7. WHAT'S NEW 5-SECOND PRODUCT AUTO-ROTATION
+   -------------------------------------------------------------------------- */
+const WHATS_NEW_ITEMS = [
+  {
+    title: "Fresh Banana Chips",
+    desc: "Crispy, light, and 100% natural. Handcrafted in Kerala in 100% pure coconut oil.",
+    badgeIcon: "ri-flashlight-fill",
+    price: "₹180 / 500g",
+    btnText: "Shop Banana Chips"
+  },
+  {
+    title: "Jackfruit Chips (Chakka Upperi)",
+    desc: "Naturally sweet, aromatic, and uniquely crunchy fried in cold-pressed coconut oil.",
+    badgeIcon: "ri-sparkles-fill",
+    price: "₹220 / 500g",
+    btnText: "Shop Jackfruit Chips"
+  },
+  {
+    title: "Spicy Kerala Hot Mixture",
+    desc: "Rich traditional Kerala mixture blend with crispy sev, peanuts & fried curry leaves.",
+    badgeIcon: "ri-fire-fill",
+    price: "₹160 / 500g",
+    btnText: "Shop Hot Mixture"
+  },
+  {
+    title: "Royal Dark Velvet Truffle Cake",
+    desc: "Decadent Dutch chocolate sponge layered with Belgian chocolate ganache & gold leaf.",
+    badgeIcon: "ri-cake-3-fill",
+    price: "₹850 / 1 Kg",
+    btnText: "Order Truffle Cake"
+  },
+  {
+    title: "Crunchy Masala Chana",
+    desc: "Roasted chickpeas coated in tangy South Indian chat masala for healthy tea-time snack.",
+    badgeIcon: "ri-heart-pulse-fill",
+    price: "₹140 / 400g",
+    btnText: "Shop Masala Chana"
+  },
+  {
+    title: "Crispy Tapioca Chips (Kappa Upperi)",
+    desc: "Thinly sliced cassava tapioca chips salted and tossed with fresh fried curry leaves.",
+    badgeIcon: "ri-leaf-fill",
+    price: "₹150 / 500g",
+    btnText: "Shop Tapioca Chips"
+  },
+  {
+    title: "Yellow Special Tea Mixture",
+    desc: "Golden mild crunchy mixture crafted with fine bhoondhi, roasted gram & cashews.",
+    badgeIcon: "ri-cup-fill",
+    price: "₹150 / 500g",
+    btnText: "Shop Tea Mixture"
+  },
+  {
+    title: "Artisan Bakery Pastries Basket",
+    desc: "Assortment of fresh butter croissants, fruit tarts, almond pastries & eclairs.",
+    badgeIcon: "ri-restaurant-2-fill",
+    price: "₹380 / Box of 6",
+    btnText: "Shop Bakery Pastries"
+  }
+];
+
+function initWhatsNewAutoRotate() {
+  const card = document.getElementById("whatsNewCard");
+  const titleEl = document.getElementById("whatsNewTitle");
+  const descEl = document.getElementById("whatsNewDesc");
+  const badgeEl = document.getElementById("whatsNewBadge");
+  const btnEl = document.getElementById("whatsNewBtn");
+  const dotsEl = document.getElementById("whatsNewDots");
+
+  if (!card || !titleEl || !descEl) return;
+
+  let currentIndex = 0;
+
+  if (dotsEl) {
+    dotsEl.innerHTML = WHATS_NEW_ITEMS.map((_, i) => `
+      <span class="wn-dot ${i === 0 ? 'active' : ''}" data-index="${i}" style="width: ${i === 0 ? '14px' : '6px'}; height: 6px; border-radius: 6px; background: ${i === 0 ? '#ffffff' : 'rgba(255,255,255,0.35)'}; transition: all 0.3s ease; cursor: pointer; display: inline-block;"></span>
+    `).join('');
+
+    dotsEl.querySelectorAll('.wn-dot').forEach(dot => {
+      dot.addEventListener('click', (e) => {
+        const idx = parseInt(e.target.dataset.index);
+        if (!isNaN(idx)) {
+          currentIndex = idx;
+          updateCard(currentIndex);
+        }
+      });
+    });
+  }
+
+  function updateCard(index) {
+    card.style.opacity = "0";
+    card.style.transform = "translateY(-6px)";
+
+    setTimeout(() => {
+      const item = WHATS_NEW_ITEMS[index];
+      if (titleEl) titleEl.innerText = item.title;
+      if (descEl) descEl.innerText = item.desc;
+      if (badgeEl) {
+        badgeEl.innerHTML = `<i class="${item.badgeIcon}" style="font-size: 1.25rem; color: var(--gold);"></i>`;
+      }
+      if (btnEl) {
+        btnEl.innerText = `${item.btnText} • ${item.price}`;
+      }
+
+      if (dotsEl) {
+        dotsEl.querySelectorAll('.wn-dot').forEach((dot, i) => {
+          if (i === index) {
+            dot.style.width = '14px';
+            dot.style.background = '#ffffff';
+          } else {
+            dot.style.width = '6px';
+            dot.style.background = 'rgba(255,255,255,0.35)';
+          }
+        });
+      }
+
+      card.style.opacity = "1";
+      card.style.transform = "translateY(0)";
+    }, 250);
+  }
+
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % WHATS_NEW_ITEMS.length;
+    updateCard(currentIndex);
+  }, 5000);
+}
+
+window.initWhatsNewAutoRotate = initWhatsNewAutoRotate;

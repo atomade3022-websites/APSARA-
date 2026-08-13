@@ -47,6 +47,10 @@
 
       <!-- Nav icons: search, cart, hamburger -->
       <div class="nav-icons">
+        <a href="#footer" class="social-media-btn" id="socialMediaHeaderBtn" title="Follow Us on Social Media">
+          <i class="ri-share-forward-fill"></i>
+          <span>Social Media</span>
+        </a>
         <button aria-label="Search"><i class="ri-search-line"></i></button>
         <button class="cart-btn" aria-label="Cart">
           <i class="ri-shopping-cart-line"></i>
@@ -85,30 +89,37 @@
 
     <!-- Middle panel — brand gradient -->
     <div class="nav-middle nav-border nav-panel" id="navMiddle">
-      <div class="nav-middle-header">What's New</div>
-      <div class="nav-middle-card">
-        <div class="nav-middle-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-          </svg>
+      <div class="nav-middle-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <span>What's New</span>
+        <span class="whats-new-timer" id="whatsNewTimer" style="font-size: 0.72rem; opacity: 0.85; font-weight: 600; background: rgba(255,255,255,0.15); padding: 3px 10px; border-radius: 20px; color: #ffffff;"><i class="ri-time-line"></i> 5s Auto-Rotate</span>
+      </div>
+      <div class="nav-middle-card" id="whatsNewCard" style="transition: opacity 0.35s ease, transform 0.35s ease;">
+        <div class="nav-middle-badge" id="whatsNewBadge">
+          <i class="ri-flashlight-fill" style="font-size: 1.25rem; color: var(--gold);"></i>
         </div>
         <div class="nav-middle-info">
-          <div class="nav-middle-title">Fresh Banana Chips</div>
-          <div class="nav-middle-desc">Crispy, light, and 100% natural. Handcrafted in Kerala.</div>
+          <div class="nav-middle-title" id="whatsNewTitle">Fresh Banana Chips</div>
+          <div class="nav-middle-desc" id="whatsNewDesc">Crispy, light, and 100% natural. Handcrafted in Kerala.</div>
         </div>
       </div>
-      <div class="nav-middle-actions">
-        <a href="#products">Shop Now</a>
+      <div class="nav-middle-actions" style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px;">
+        <a href="#products" id="whatsNewBtn">Shop Banana Chips • ₹180 / 500g</a>
+        <div class="whats-new-dots" id="whatsNewDots" style="display: flex; gap: 4px; align-items: center;"></div>
       </div>
     </div>
 
     <!-- Bottom panel — dark -->
     <div class="nav-bottom nav-border nav-panel" id="navBottom">
-      <ul class="nav-socials">
-        <li><a href="#" target="_blank"><i class="ri-instagram-line"></i> Instagram</a></li>
-        <li><a href="#" target="_blank"><i class="ri-facebook-box-line"></i> Facebook</a></li>
-        <li><a href="#" target="_blank"><i class="ri-whatsapp-line"></i> WhatsApp</a></li>
-      </ul>
+      <div class="nav-social-wrap" style="display: flex; flex-direction: column; gap: 6px; width: 100%;">
+        <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--pink); font-weight: 700; display: flex; align-items: center; gap: 6px;">
+          <i class="ri-share-line"></i> Social Media
+        </div>
+        <ul class="nav-socials">
+          <li><a href="https://www.instagram.com/apsara_bakes/?hl=en" target="_blank" rel="noopener"><i class="ri-instagram-line"></i> Instagram</a></li>
+          <li><a href="https://www.facebook.com/apsarabakes/photos/" target="_blank" rel="noopener"><i class="ri-facebook-box-line"></i> Facebook</a></li>
+          <li><a href="https://wa.me/919847572417?text=Hello%20Apsara%20Bakes" target="_blank" rel="noopener"><i class="ri-whatsapp-line"></i> WhatsApp</a></li>
+        </ul>
+      </div>
       <div class="nav-asset">
         <img src="header_logo.png" alt="Apsara Bakes Logo" style="filter: brightness(0) invert(1);" />
       </div>
@@ -1697,10 +1708,9 @@
           <div class="footer-social-wrapper">
             <span class="social-title">Follow Our Culinary Journey</span>
             <div class="social-icons-row">
-              <a href="#" class="social-icon" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
-              <a href="#" class="social-icon" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
-              <a href="#" class="social-icon" aria-label="YouTube"><i class="ri-youtube-fill"></i></a>
-              <a href="#" class="social-icon" aria-label="WhatsApp"><i class="ri-whatsapp-line"></i></a>
+              <a href="https://www.facebook.com/apsarabakes/photos/" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+              <a href="https://www.instagram.com/apsara_bakes/?hl=en" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+              <a href="https://wa.me/919847572417?text=Hello%20Apsara%20Bakes" target="_blank" rel="noopener" class="social-icon" aria-label="WhatsApp"><i class="ri-whatsapp-line"></i></a>
             </div>
           </div>
         </div>

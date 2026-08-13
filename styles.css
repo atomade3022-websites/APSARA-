@@ -392,6 +392,43 @@ img {
   z-index: 10;
 }
 
+.social-media-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  background: var(--dynamic-accent, linear-gradient(135deg, #ff3d9a, #7b2cbf));
+  color: #ffffff !important;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 61, 154, 0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s ease;
+  cursor: pointer;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.social-media-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 18px rgba(255, 61, 154, 0.4);
+}
+
+@media (max-width: 480px) {
+  .social-media-btn span {
+    display: none;
+  }
+  .social-media-btn {
+    padding: 6px 10px;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    justify-content: center;
+  }
+}
+
 .nav-icons>button {
   background: none;
   border: none;
