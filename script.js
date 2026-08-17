@@ -957,3 +957,25 @@ function initWhatsNewAutoRotate() {
 }
 
 window.initWhatsNewAutoRotate = initWhatsNewAutoRotate;
+
+
+function scrollToAdminContact() {
+  if (typeof closeProfileModal === 'function') {
+    closeProfileModal();
+  }
+  const outletsSec = document.getElementById('outlets');
+  if (outletsSec) {
+    outletsSec.scrollIntoView({ behavior: 'smooth' });
+    const vipCard = document.querySelector('.owner-vip-card');
+    if (vipCard) {
+      vipCard.style.transition = 'transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease';
+      vipCard.style.transform = 'scale(1.04)';
+      vipCard.style.borderColor = '#ffffff';
+      vipCard.style.boxShadow = '0 0 30px rgba(255, 255, 255, 0.5)';
+      setTimeout(() => {
+        vipCard.style.transform = 'scale(1)';
+        vipCard.style.boxShadow = '0 18px 45px rgba(0, 0, 0, 0.45)';
+      }, 1800);
+    }
+  }
+}
